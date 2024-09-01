@@ -1,0 +1,228 @@
+/* Keyframes for slide animation */
+@keyframes slideYright {
+  from {
+      transform: translateY(-300px);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+  }
+}
+
+@keyframes slideYleft {
+  from {
+      transform: translateY(300px);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+  }
+}
+
+
+
+/* General Section Styling */
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+.Image{
+  width: 400px;
+  height: 400px;
+  animation: slideYright 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.container {
+  padding: 0px;
+  
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: slideYleft 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+/* Form Title */
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #235ba0;
+}
+
+/* Input Group Styles */
+.inputGroup {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column; /* Ensure vertical stacking */
+  align-items:center;
+  width: 100%; /* Full width to ensure alignment */
+  justify-content: center;
+}
+
+.inputWithButton {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.inputField {
+  width: 100%;
+  padding: 10px 0px;
+  border: none;
+  border-bottom: 2px solid #dad9d9;
+  font-size: 14px;
+  background: transparent;
+  transition: border-bottom-color 0.3s ease;
+  margin-bottom: 10px; /* Space between input and button */
+}
+
+.inputField:focus {
+  outline: none;
+  border-bottom-color: #235ba0;
+}
+
+.inputField::placeholder {
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Verify Button Styling */
+.verifyButton {
+  background-color: #f15555;
+  color: white;
+  padding: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  height: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.verifyButton:hover {
+  background-color: #b15555;
+}
+
+.verifiedButton {
+  background-color: green; /* Green background for verified state */
+}
+
+.verifiedButton:hover {
+  background-color: darkgreen;
+}
+
+/* Error Message Styling */
+.errorMessage {
+  text-align: left;
+  margin: 0;
+  font-size: 10px;
+  color: rgb(214, 24, 24);
+}
+
+/* Success Message Styling */
+.successMessage {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 16px;
+  color: green;
+}
+
+.buttonDiv{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Wrapper for Tooltip */
+.tooltipWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Tooltip */
+.tooltip {
+  visibility: hidden;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 10px;
+  position: absolute;
+  top: 60px; /* Position above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  font-size: 10px;
+}
+
+/* Show Tooltip on hover when button is disabled */
+.tooltipWrapper:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Submit Button */
+.submitButton {
+  background-color: #235ba0;
+  color: white;
+  width: 80%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  opacity: 0.6; /* Initially disabled */
+}
+
+.submitButton:disabled {
+  cursor: not-allowed;
+}
+
+/* Hover effects for active buttons */
+.submitButton:hover:not(:disabled) {
+  background-color: #1d2a5c;
+  color: white;
+}
+
+/* Active submit button */
+.activeSubmitButton {
+  opacity: 1; /* Fully opaque when enabled */
+}
+/* Mobile Display Adjustments */
+@media (max-width: 480px) {
+  .container {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  .inputField {
+    font-size: 14px;
+  }
+
+  .verifyButton {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .title {
+    font-size: 1.5em;
+  }
+}

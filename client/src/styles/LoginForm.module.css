@@ -1,0 +1,147 @@
+@keyframes slideYright {
+    from {
+      transform: translateY(-300px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideYleft {
+    from {
+      transform: translateY(300px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  .sectionMain {
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .wrapper {
+    width: 80%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .Image {
+    width: 600px;
+    height: 600px;
+    animation: slideYright 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+  
+  .container {
+    width: 400px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    animation: slideYleft 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+  
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #235ba0;
+  }
+  
+  .inputGroup {
+    margin-bottom: 15px;
+    position: relative;
+    padding: 2px 15px;
+  }
+  
+  .inputLabel {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #0375cd;
+  }
+  
+  .inputField {
+    width: 100%;
+    padding: 5px 0px;
+    border: none;
+    border-bottom: 2px solid #dad9d9;
+    font-size: 13px;
+    background: transparent;
+    transition: border-bottom-color 0.3s ease;
+  }
+  
+  .inputField:focus {
+    outline: none;
+    border-bottom-color: #235ba0;
+    box-shadow: 0px 3px 0px 0px rgba(35, 91, 160, 0.2);
+  }
+  
+  .inputField::placeholder {
+    color: #aaa;
+    font-size: 14px;
+  }
+  
+  .buttonDiv {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .submitButton {
+    background-color: #235ba0;
+    color: white;
+    width: 50%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .submitButton:hover {
+    background-color: #577ee2;
+  }
+  
+  .errorMessage {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 11px;
+    color: red;
+  }
+  
+  .successMessage {
+    text-align: center;
+    margin-top: 0px;
+    font-size: 16px;
+    color: green;
+  }
+  
+  @media (max-width: 768px) {
+    .wrapper {
+      width: 80%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+  
+    .container {
+      max-width: 90%;
+    }
+  }
+  
