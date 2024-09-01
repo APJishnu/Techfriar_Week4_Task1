@@ -26,10 +26,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET || 'your-secret-key', // Use environment variable for the secret
   resave: false,
   saveUninitialized: false,         // Set to false to avoid saving empty sessions
-  cookie: { 
-    secure: process.env.NODE_ENV === 'production', // Only set to true in production
-    httpOnly: true
-  },
+  cookie: { secure: false, httpOnly: true } ,// Use secure cookies in production (secure: true)
   store: MongoStore.create({ 
     mongoUrl: process.env.MONGO_URI || 'mongodb://localhost:27017/TestRegistration'
   })

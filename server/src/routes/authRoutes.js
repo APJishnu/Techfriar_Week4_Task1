@@ -386,31 +386,26 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// backend route for checking login status
-router.get('/check-loggin', (req, res) => {
-  
-  if (req.session && req.session.loggedIn) {
-    console.log("true:",req.session)
-    res.json({ loggedIn: true ,loading:false});
-  } else {
-    console.log(req.session)
-    res.json({ loggedIn: false ,loading:true});
+// Route to check login status
+router.get('/check-login', (req, res) => {
+  if (req.session.loggedIn) {
+    return res.status(200).json({ user: req.session.user });
   }
+  return res.status(401).json({ message: 'Not authenticated' });
 });
 
 
-// Route for logging out
+
+// Route for user logout
 router.get('/logout', (req, res) => {
-  console.log("haaiiii")
   req.session.destroy(err => {
     if (err) {
-      console.log(req.session.loggedIn);
-      return res.status(500).json({ message: 'Error logging out' });
+      return res.status(500).json({ message: 'Failed to log out' });
     }
+    res.clearCookie('connect.sid'); // Adjust according to your cookie settings
     res.status(200).json({ message: 'Logout successful' });
   });
 });
-
 
 
 
