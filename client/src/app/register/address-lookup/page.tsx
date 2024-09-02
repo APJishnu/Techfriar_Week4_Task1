@@ -46,7 +46,7 @@ const AddressLookup: React.FC = () => {
                 try {
                     const response = await axios.post("http://localhost:5000/api/auth/verify-pincode", {
                         pincode: inputPincode,
-                        userId,
+
                     });
 
                     if (response.data.success) {
@@ -168,9 +168,9 @@ const AddressLookup: React.FC = () => {
 
                 {/* KYC Verification Button */}
                 {address && (
-                     <button className={styles.kycButton} onClick={handleKycVerification}>
-                     Proceed with KYC Verification
-                 </button>
+                    <button className={styles.kycButton} onClick={handleKycVerification}>
+                        Proceed with KYC Verification
+                    </button>
                 )}
 
             </div>
@@ -185,7 +185,7 @@ const AddressLookup: React.FC = () => {
                     top: '87%',           // Adjust the top position
                     left: '35%',
                     margin: '0',           // Adjust the margin as needed
-                  }} // Inline style for margin
+                }} // Inline style for margin
             />
         </div>
 

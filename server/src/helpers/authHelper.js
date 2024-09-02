@@ -43,7 +43,7 @@ module.exports = {
       callback({ general: 'An unexpected error occurred.' }, null);
     }
   },
-  
+
   verifyOtp: (userID, userInputField, userInputValue, userInputOtp) => {
     const { userId, otp, field, value } = req.session.otpData || {};
 
@@ -63,8 +63,6 @@ module.exports = {
 
 
 
-
-
   //user Login
 
   login: async (emailOrPhone, password) => {
@@ -73,33 +71,33 @@ module.exports = {
       const user = await User.findOne({
         $or: [{ email: emailOrPhone }, { phone: emailOrPhone }]
       });
-  
+
       // Check if user exists
       if (!user) {
         // User not found with email or phone
         return { error: { emailOrPhone: 'No user found with this email or phone number.' } };
       }
-  
+
       // Check if registration is completed
-      // if (!user.registrationCompletedAt) {
-      //   return { error: { general: 'User registration not completed.' } };
-      // }
-  
+      if (!user.registrationCompletedAt) {
+        return { error: { general: 'User registration not completed.' } };
+      }
+
       // Check if the password matches
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
         // Incorrect password
         return { error: { password: 'Incorrect password. Please try again.' } };
       }
-  
+
       // If successful, return the user
       return { user };
-  
+
     } catch (error) {
       console.error("Error during login:", error);
       return { error: { general: 'An unexpected error occurred during login. Please try again later.' } };
     }
   },
-  
-  
+
+
 };

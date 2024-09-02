@@ -46,8 +46,8 @@ const Home: React.FC = () => {
         <img className={styles.Image} src="/illustrations/HeroSection.svg"></img>
         <div className={styles.HeroSectionContentDiv}>
           <h1>Welcome to Our Website</h1>
-          {isLoggedIn? (<p>Your one-stop solution for all your needs!</p>):(<p>Please Login or register for Start with your Profile</p>)}
-          
+          {isLoggedIn ? (<p>Your one-stop solution for all your needs!</p>) : (<p>Please Login or register for Start with your Profile</p>)}
+
           <div className={styles.heroButtons}>
             {!isLoggedIn ? (
               <>

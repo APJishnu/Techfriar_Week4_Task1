@@ -1,7 +1,7 @@
 const { validateRequest } = require('twilio/lib/webhooks/webhooks');
 const User = require('../models/user');
 const { default: mongoose } = require('mongoose');
-const ObjectId=mongoose.Types.ObjectId;
+const ObjectId = mongoose.Types.ObjectId;
 
 
 module.exports = {
@@ -65,7 +65,7 @@ module.exports = {
 
   aadhaarVerified: async (aadharNumber, userId) => {
     try {
-    
+
       let updatedData = { aadhaarNumber: aadharNumber, aadhaarVerifiedAt: Date.now() }
       // Update user data in MongoDB
       const updatedAadhaarAt = await User.findOneAndUpdate(
@@ -119,13 +119,13 @@ module.exports = {
     try {
       console.log(userId)
       let updatedData = { bankAccountNumber: bankAccountNumber, bankVerifiedAt: Date.now() }
-  
+
       // Update user data in MongoDB
-    const updatedBankAt = await User.findOneAndUpdate(
-      { _id: userId },
-      { $set: updatedData },
-      { new: true } // Ensure updated document is returned
-    );
+      const updatedBankAt = await User.findOneAndUpdate(
+        { _id: userId },
+        { $set: updatedData },
+        { new: true } // Ensure updated document is returned
+      );
 
       if (!updatedBankAt) {
         return false;
@@ -142,13 +142,13 @@ module.exports = {
     try {
       console.log(userId)
       let updatedData = { gstNumber: gstNumber, gstVerifiedAt: Date.now() }
-  
+
       // Update user data in MongoDB
-    const updatedgstAt = await User.findOneAndUpdate(
-      { _id: userId },
-      { $set: updatedData },
-      { new: true } // Ensure updated document is returned
-    );
+      const updatedgstAt = await User.findOneAndUpdate(
+        { _id: userId },
+        { $set: updatedData },
+        { new: true } // Ensure updated document is returned
+      );
 
       if (!updatedgstAt) {
         return false;
@@ -161,39 +161,39 @@ module.exports = {
     }
   },
 
- // authValidation.js
-addressSaved: async (data) => {
-  try {
-    console.log(data.userId); // Debugging log to ensure correct value is passed
+  // authValidation.js
+  addressSaved: async (data) => {
+    try {
+      console.log(data.userId); // Debugging log to ensure correct value is passed
 
-    let updatedData = {
-      address: {
-        pincode: data.pincode,
-        place: data.place,
-        district: data.district,
-        state: data.state,
-        country: data.country,
-        createdAt: Date.now(),
-        
-      },
-      registrationCompletedAt:Date.now(),
-    };
+      let updatedData = {
+        address: {
+          pincode: data.pincode,
+          place: data.place,
+          district: data.district,
+          state: data.state,
+          country: data.country,
+          createdAt: Date.now(),
 
-    // Update user data in MongoDB
-    const updatedPinCodeAt = await User.findOneAndUpdate(
-      { _id: data.userId }, // Make sure this field matches the one in the user schema
-      { $set: updatedData },
-      { new: true } // Return the updated document
-    );
+        },
+        registrationCompletedAt: Date.now(),
+      };
 
-    if (!updatedPinCodeAt) {
-      return false; // If no user found, return false
+      // Update user data in MongoDB
+      const updatedPinCodeAt = await User.findOneAndUpdate(
+        { _id: data.userId }, // Make sure this field matches the one in the user schema
+        { $set: updatedData },
+        { new: true } // Return the updated document
+      );
+
+      if (!updatedPinCodeAt) {
+        return false; // If no user found, return false
+      }
+      return true; // Successfully updated
+    } catch (error) {
+      console.error("Error saving address:", error); // Log the error for debugging
+      return false; // Return false in case of an error
     }
-    return true; // Successfully updated
-  } catch (error) {
-    console.error("Error saving address:", error); // Log the error for debugging
-    return false; // Return false in case of an error
-  }
-},
+  },
 
 };

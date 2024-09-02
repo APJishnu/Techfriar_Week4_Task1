@@ -103,20 +103,20 @@ const EmailVerification: React.FC = () => {
   const handleProceed = () => {
     const userId = searchParams.get("userId") || "";
     const phone = searchParams.get("phone") || "";
-    const queryParams = new URLSearchParams({userId, phone }).toString();
-  
+    const queryParams = new URLSearchParams({ userId, phone }).toString();
+
     setShowPopup(false);
-    if(!showPopup){
+    if (!showPopup) {
       setLoading(true)
     }
     router.push(`/register/phone-verification?${queryParams}`);
-    
+
   };
 
   return (
     <div className={styles.wrapper}>
       <img className={styles.Image} src="/illustrations/Email.svg"></img>
-  
+
       <div className={styles.container}>
         <h1 className={styles.title}>Email Verification</h1>
         {email ? (
@@ -145,27 +145,27 @@ const EmailVerification: React.FC = () => {
             )}
             <OTPInput length={6} onChange={(otp) => setOtp(otp)} />
             <div className={styles.tooltipWrapper}>
-    <button
-      className={`${styles.verifyButton} ${otpSent ? styles.activeSubmitButton : ""}`}
-      onClick={verifyOtp}
-      disabled={!otpSent}
-    >
-      verify OTP
-    </button>
-    {!otpSent? (
-      <span className={styles.tooltip}>sent Otp to Email for enable the button</span>
-    ) : null}
-  </div>
+              <button
+                className={`${styles.verifyButton} ${otpSent ? styles.activeSubmitButton : ""}`}
+                onClick={verifyOtp}
+                disabled={!otpSent}
+              >
+                verify OTP
+              </button>
+              {!otpSent ? (
+                <span className={styles.tooltip}>sent Otp to Email for enable the button</span>
+              ) : null}
+            </div>
             {error && <p className={styles.errorMessage}>{error}</p>}
-            
+
           </>
         ) : (
           <div className={styles.loadingContainer}>
-          <div className={styles.spinnerDiv}>
-            <div className={styles.loadingSpinner}></div>
+            <div className={styles.spinnerDiv}>
+              <div className={styles.loadingSpinner}></div>
+            </div>
+            <p className={styles.loadingText}>wait...</p>
           </div>
-          <p className={styles.loadingText}>wait...</p>
-        </div>
         )}
       </div>
       {showPopup && (

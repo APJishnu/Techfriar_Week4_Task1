@@ -7,7 +7,7 @@ module.exports = {
         method: 'POST',
         url: 'https://api.apyhub.com/validate/aadhaar',
         headers: {
-          'apy-token': 'APY09VaKp1QD2SHtbQnCJBXPg4Qzm0g55juqhWTZTqGgnuhl9tcuQwxNnMVteX2j3x280Wqvn',
+          'apy-token': 'APY0EP4sQ4upwuOztt4WzWDBD6JOOVU3Dv3UiUNfckMVngzg2kRCkocN1yhBh59hbDsoKU',
           'Content-Type': 'application/json'
         },
         data: { aadhaar: aadhaar }
@@ -26,7 +26,7 @@ module.exports = {
         method: 'POST',
         url: 'https://aadhaar-number-verification-api-using-pan-number.p.rapidapi.com/api/validation/pan_to_aadhaar',
         headers: {
-          'x-rapidapi-key': '9199546b9cmshb01ebbd8af8234fp14a8b0jsn2893f4f2f2e6',
+          'x-rapidapi-key': 'bc046b5694msh7438399ac386c86p1636b4jsnea163db0ded8',
           'x-rapidapi-host': 'aadhaar-number-verification-api-using-pan-number.p.rapidapi.com',
           'Content-Type': 'application/json'
         },
@@ -50,7 +50,7 @@ module.exports = {
         method: 'POST',
         url: 'https://indian-bank-account-verification.p.rapidapi.com/v3/tasks/async/verify_with_source/validate_bank_account',
         headers: {
-          'x-rapidapi-key': 'fdc582f5d1msh60d00801cbfe077p185df4jsn2ea20d746780',
+          'x-rapidapi-key': 'bc046b5694msh7438399ac386c86p1636b4jsnea163db0ded8',
           'x-rapidapi-host': 'indian-bank-account-verification.p.rapidapi.com',
           'Content-Type': 'application/json'
         },
@@ -80,7 +80,7 @@ module.exports = {
           request_id: requestId
         },
         headers: {
-          'x-rapidapi-key': 'fdc582f5d1msh60d00801cbfe077p185df4jsn2ea20d746780',
+          'x-rapidapi-key': 'bc046b5694msh7438399ac386c86p1636b4jsnea163db0ded8',
           'x-rapidapi-host': 'indian-bank-account-verification.p.rapidapi.com'
         }
       };
@@ -121,7 +121,7 @@ module.exports = {
   },
 
 
-  
+
   pinCodeVerifyApi: async (pincode) => {
     try {
       const pinCodeApi = `https://api.postalpincode.in/pincode/${pincode}`

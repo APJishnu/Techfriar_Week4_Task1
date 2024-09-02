@@ -1,22 +1,23 @@
-
 /* Keyframes for slide animation */
 @keyframes slideYright {
   from {
-      transform: translateY(-300px);
-      opacity: 0;
+    transform: translateY(-300px);
+    opacity: 0;
   }
+
   to {
-      transform: translateY(0);
+    transform: translateY(0);
   }
 }
 
 @keyframes slideYleft {
   from {
-      transform: translateY(300px);
-      opacity: 0;
+    transform: translateY(300px);
+    opacity: 0;
   }
+
   to {
-      transform: translateY(0);
+    transform: translateY(0);
   }
 }
 
@@ -31,15 +32,15 @@
 }
 
 
-  .Image{
-    width: 400px;
-    height: 400px;
-    animation: slideYright 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-  }
+.Image {
+  width: 400px;
+  height: 400px;
+  animation: slideYright 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
 
 
 .container {
-  
+
   padding: 0px;
   width: 100%;
   max-width: 400px;
@@ -221,7 +222,8 @@
   .container {
     max-width: 90%;
     padding: 20px;
-    animation: none; /* Remove animation for mobile responsiveness */
+    animation: none;
+    /* Remove animation for mobile responsiveness */
   }
 
   .title {
@@ -235,16 +237,17 @@
   }
 
   /* Ensuring consistent width for both "Verify" buttons */
-  .verifyButton,  
+  .verifyButton,
   .gstVerifyButton {
     padding: 10px;
     font-size: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-     /* Set width to 100% to ensure both buttons have the same width */
+    /* Set width to 100% to ensure both buttons have the same width */
   }
-  .submitButton{
+
+  .submitButton {
     width: 100%;
   }
 
@@ -260,7 +263,7 @@
     margin: 0 3px;
   }
 
-  .successMessage, 
+  .successMessage,
   .errorMessage {
     font-size: 12px;
   }
@@ -272,5 +275,3 @@
     width: 10%;
   }
 }
-
-

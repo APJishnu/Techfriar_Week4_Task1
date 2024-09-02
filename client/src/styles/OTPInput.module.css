@@ -6,17 +6,20 @@
     transform: translateY(-300px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
   }
 }
+
 @keyframes slideYleft {
   from {
-      transform: translateY(300px);
-      opacity: 0;
+    transform: translateY(300px);
+    opacity: 0;
   }
+
   to {
-      transform: translateY(0);
+    transform: translateY(0);
   }
 }
 
@@ -25,6 +28,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -37,10 +41,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; 
+  height: 100vh;
 }
-.Image{
-  width:500px;
+
+.Image {
+  width: 500px;
   height: 500px;
   animation: slideYright 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
@@ -73,10 +78,10 @@
   text-align: center;
   margin-bottom: 15px;
   font-weight: 600;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   letter-spacing: 1px;
   color: #1d4f91;
-  
+
 }
 
 .verifyButton {
@@ -90,6 +95,7 @@
   cursor: not-allowed;
   transition: background-color 0.3s;
 }
+
 .activeVerifyButton {
   cursor: not-allowed;
 }
@@ -97,6 +103,7 @@
 .verifyButton:hover:not(:disabled) {
   background-color: #286ac0;
 }
+
 .verifyButton:not(:disabled) {
   background-color: #1d4f91;
   cursor: pointer;
@@ -125,6 +132,7 @@
 .sendButton:hover:not(:disabled) {
   background-color: #1d4f91;
 }
+
 .sendButton:not(:disabled) {
   background-color: #1d4f91;
   color: white;
@@ -185,7 +193,7 @@
 }
 
 
-.buttonDiv{
+.buttonDiv {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -207,7 +215,8 @@
   border-radius: 5px;
   padding: 5px 10px;
   position: absolute;
-  top: 40px; /* Position above the button */
+  top: 40px;
+  /* Position above the button */
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
@@ -227,49 +236,65 @@
 @media screen and (max-width: 768px) {
   .wrapper {
     flex-direction: column;
-    padding: 20px; /* Add padding for mobile */
+    padding: 20px;
+    /* Add padding for mobile */
     padding-top: 100px;
   }
 
   .Image {
-    width: 100%; /* Make the image responsive */
-    height: auto; /* Adjust height automatically */
-    margin-bottom: 20px; /* Add space between the image and OTP container */
-   
+    width: 100%;
+    /* Make the image responsive */
+    height: auto;
+    /* Adjust height automatically */
+    margin-bottom: 20px;
+    /* Add space between the image and OTP container */
+
   }
 
   .container {
-    width: 100%; /* Ensure container takes full width on mobile */
-    max-width: 100%; /* Remove the max-width limit on smaller screens */
-    padding: 15px; /* Adjust padding for mobile */
+    width: 100%;
+    /* Ensure container takes full width on mobile */
+    max-width: 100%;
+    /* Remove the max-width limit on smaller screens */
+    padding: 15px;
+    /* Adjust padding for mobile */
     padding-bottom: 50px;
   }
 
   .title {
-    font-size: 20px; /* Adjust font size for mobile */
-    margin-bottom: 15px; /* Adjust margin */
+    font-size: 20px;
+    /* Adjust font size for mobile */
+    margin-bottom: 15px;
+    /* Adjust margin */
   }
 
   .inputField {
-    padding: 8px; /* Adjust input padding for mobile */
-    font-size: 12px; /* Adjust font size */
+    padding: 8px;
+    /* Adjust input padding for mobile */
+    font-size: 12px;
+    /* Adjust font size */
   }
 
   .verifyButton,
   .sendButton {
-    width: 100%; /* Make buttons full width on mobile */
-    padding: 12px; /* Adjust padding for mobile */
-    font-size: 14px; /* Adjust font size */
+    width: 100%;
+    /* Make buttons full width on mobile */
+    padding: 12px;
+    /* Adjust padding for mobile */
+    font-size: 14px;
+    /* Adjust font size */
   }
 
   .otpInput {
-    width: 35px; /* Slightly smaller OTP input */
+    width: 35px;
+    /* Slightly smaller OTP input */
     height: 35px;
-    margin: 0 4px; /* Adjust margin for better spacing */
+    margin: 0 4px;
+    /* Adjust margin for better spacing */
   }
 
   .tooltip {
-    top: 35px; /* Adjust tooltip positioning for smaller screens */
+    top: 35px;
+    /* Adjust tooltip positioning for smaller screens */
   }
 }
-

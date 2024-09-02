@@ -1,21 +1,23 @@
 /* Keyframes for slide animation */
 @keyframes slideYright {
   from {
-      transform: translateY(-300px);
-      opacity: 0;
+    transform: translateY(-300px);
+    opacity: 0;
   }
+
   to {
-      transform: translateY(0);
+    transform: translateY(0);
   }
 }
 
 @keyframes slideYleft {
   from {
-      transform: translateY(300px);
-      opacity: 0;
+    transform: translateY(300px);
+    opacity: 0;
   }
+
   to {
-      transform: translateY(0);
+    transform: translateY(0);
   }
 }
 
@@ -30,7 +32,8 @@
   justify-content: center;
   background: #ffffff;
 }
-.Image{
+
+.Image {
   width: 400px;
   height: 400px;
   animation: slideYright 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
@@ -38,7 +41,7 @@
 
 .container {
   padding: 0px;
-  
+
   width: 100%;
   max-width: 400px;
   border-radius: 10px;
@@ -62,9 +65,11 @@
 .inputGroup {
   margin-bottom: 20px;
   display: flex;
-  flex-direction: column; /* Ensure vertical stacking */
-  align-items:center;
-  width: 100%; /* Full width to ensure alignment */
+  flex-direction: column;
+  /* Ensure vertical stacking */
+  align-items: center;
+  width: 100%;
+  /* Full width to ensure alignment */
   justify-content: center;
 }
 
@@ -84,7 +89,8 @@
   font-size: 14px;
   background: transparent;
   transition: border-bottom-color 0.3s ease;
-  margin-bottom: 10px; /* Space between input and button */
+  margin-bottom: 10px;
+  /* Space between input and button */
 }
 
 .inputField:focus {
@@ -115,7 +121,8 @@
 }
 
 .verifiedButton {
-  background-color: green; /* Green background for verified state */
+  background-color: green;
+  /* Green background for verified state */
 }
 
 .verifiedButton:hover {
@@ -138,7 +145,7 @@
   color: green;
 }
 
-.buttonDiv{
+.buttonDiv {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -161,7 +168,8 @@
   border-radius: 5px;
   padding: 5px 10px;
   position: absolute;
-  top: 60px; /* Position above the button */
+  top: 60px;
+  /* Position above the button */
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
@@ -189,7 +197,8 @@
   font-size: 16px;
   margin-top: 20px;
   transition: background-color 0.3s ease, opacity 0.3s ease;
-  opacity: 0.6; /* Initially disabled */
+  opacity: 0.6;
+  /* Initially disabled */
 }
 
 .submitButton:disabled {
@@ -204,8 +213,10 @@
 
 /* Active submit button */
 .activeSubmitButton {
-  opacity: 1; /* Fully opaque when enabled */
+  opacity: 1;
+  /* Fully opaque when enabled */
 }
+
 /* Responsive Design for Mobile Devices */
 @media (max-width: 768px) {
   .Image {
@@ -271,7 +282,7 @@
   .verifyButton {
     padding: 6px 12px;
     font-size: 12px;
-    
+
   }
 
   .submitButton {
@@ -283,7 +294,7 @@
   .title {
     font-size: 1.2em;
   }
-  
+
   /* Adjust layout for mobile with image stacked on top */
   .wrapper {
     flex-direction: column;

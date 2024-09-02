@@ -4,6 +4,7 @@
         transform: translateY(-300px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
     }
@@ -14,13 +15,14 @@
         transform: translateY(300px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
     }
 }
 
 
-.sectionMain{
+.sectionMain {
     width: 100vw;
     overflow: hidden;
     display: flex;
@@ -36,18 +38,18 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-   
-    
+
+
 }
 
 
 
-.Image{
-    width:500px;
+.Image {
+    width: 500px;
     height: 500px;
     animation: slideYright 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
-  
+
 
 .section h2 {
     text-align: center;
@@ -65,7 +67,7 @@
     background-color: #ffffff;
     border-radius: 10px;
     animation: slideYleft 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-    
+
 }
 
 
@@ -85,7 +87,7 @@
 
 }
 
-.inputLabel{
+.inputLabel {
     text-align: center;
     margin-bottom: 20px;
     font-size: 0.8em;
@@ -122,7 +124,7 @@
 }
 
 .verifyButton {
-   
+
     color: rgb(255, 4, 4);
     padding: 8px 12px;
     border: none;
@@ -135,7 +137,8 @@
 .verifyButton:hover {
     color: rgb(181, 87, 87);
 }
-.verifiedSpan{
+
+.verifiedSpan {
     color: green;
     font-size: 12px;
     margin-left: 10px;
@@ -159,7 +162,7 @@
 
 /* Error Message Styling */
 .errorMessage {
-   
+
     text-align: center;
     margin-top: 5px;
     font-size: 11px;
@@ -173,7 +176,8 @@
     font-size: 16px;
     color: green;
 }
-.buttonDiv{
+
+.buttonDiv {
     width: 100%;
     display: flex;
     align-items: center;
@@ -182,8 +186,8 @@
 
 /* Submit Button */
 .submitButton {
- 
-    background-color:  #235ba0;
+
+    background-color: #235ba0;
     color: white;
     width: 50%;
     padding: 10px;
@@ -212,16 +216,16 @@
 
 /* Mobile Display Adjustments */
 @media(max-width: 768px) {
-    .sectionMain{
+    .sectionMain {
         width: 100vw;
         height: 100vh;
-        overflow:visible;
+        overflow: visible;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
-    
+
     .wrapper {
         width: 80%;
         height: 100vh;
@@ -230,22 +234,22 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        overflow:visible;
-        
+        overflow: visible;
+
     }
 
 
-    .Image{
+    .Image {
         margin-top: 200px;
         padding: 20px;
         width: 100%;
         height: inherit;
     }
-  
+
     .container {
         max-width: 100%;
         padding-bottom: 40px;
-        
+
     }
 
     .otpBox {

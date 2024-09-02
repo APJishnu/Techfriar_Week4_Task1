@@ -35,7 +35,7 @@ const RegisterForm: React.FC = () => {
   const [verificationType, setVerificationType] = useState<"email" | "phone">("email"); // Updated types
   const [success, setSuccess] = useState<string | null>(null);
   const [showPopup, setShowPopup] = useState(false); // State to handle popup visibility
-  const [userId,setUserId]  = useState("")
+  const [userId, setUserId] = useState("")
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -102,7 +102,6 @@ const RegisterForm: React.FC = () => {
         });
       }
     } catch (err: any) {
-      console.error("Error during registration:", err.response?.data);
       // Handle unexpected errors
     }
   };
@@ -113,13 +112,13 @@ const RegisterForm: React.FC = () => {
 
   const handleProceed = () => {
     const queryParams = new URLSearchParams({
-      userId:userId,
+      userId: userId,
       email: formData.email,
       phone: formData.phone,
     }).toString();
 
     setShowPopup(false); // Hide the popup
-    
+
     router.push(`/register/email-verification?${queryParams}`);
   };
 
@@ -129,91 +128,91 @@ const RegisterForm: React.FC = () => {
 
   return (
     <>
-    <div className={styles.sectionMain}>
-    <div className={styles.wrapper}>
-    <img className={styles.Image} src="/illustrations/Register.svg"></img>
-      <div className={styles.container}>
-        <h1 className={styles.title}>Register</h1>
-      
-        <form onSubmit={handleSubmit}>
-        <div className={styles.secondContainer}>
-          <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>Name:</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className={styles.inputField}
-            />
-            {errors.name && <p className={styles.errorMessage}>{errors.name}</p>}
-          </div>
-          <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className={styles.inputField}
-            />
-            {errors.email && <p className={styles.errorMessage}>{errors.email}</p>}
-          </div>
-          <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>Phone:</label>
-            <input
-              type="text"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              className={styles.inputField}
-            />
-            {errors.phone && <p className={styles.errorMessage}>{errors.phone}</p>}
-          </div>
-          <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>DOB:</label>
-            <input
-              type="date"
-              name="dob"
-              value={formData.dob}
-              onChange={handleChange}
-              className={styles.inputField}
-            />
-            {errors.dob && <p className={styles.errorMessage}>{errors.dob}</p>}
-          </div>
-          <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>Password:</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className={styles.inputField}
-            />
-            {errors.password && <p className={styles.errorMessage}>{errors.password}</p>}
-          </div>
-          </div>
-          <div className={styles.buttonDiv}>
-          <button type="submit" className={styles.submitButton}>
-            Register
-          </button>
-          </div>
-          {success && <p className={styles.successMessage}>{success}</p>}
-          {errors.general && <p className={styles.errorMessage}>{errors.general}</p>}
-        </form>
-        
-      </div>
+      <div className={styles.sectionMain}>
+        <div className={styles.wrapper}>
+          <img className={styles.Image} src="/illustrations/Register.svg"></img>
+          <div className={styles.container}>
+            <h1 className={styles.title}>Register</h1>
 
-      {/* Conditionally render the popup */}
-      {showPopup && (
-        <PopUpVerification
-          onClose={handleClosePopup}
-          onProceed={handleProceed}
-          verificationType={verificationType} // Dynamic verification type
-        />
-      )}
-    </div>
-    </div>
+            <form onSubmit={handleSubmit}>
+              <div className={styles.secondContainer}>
+                <div className={styles.inputGroup}>
+                  <label className={styles.inputLabel}>Name:</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className={styles.inputField}
+                  />
+                  {errors.name && <p className={styles.errorMessage}>{errors.name}</p>}
+                </div>
+                <div className={styles.inputGroup}>
+                  <label className={styles.inputLabel}>Email:</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={styles.inputField}
+                  />
+                  {errors.email && <p className={styles.errorMessage}>{errors.email}</p>}
+                </div>
+                <div className={styles.inputGroup}>
+                  <label className={styles.inputLabel}>Phone:</label>
+                  <input
+                    type="text"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className={styles.inputField}
+                  />
+                  {errors.phone && <p className={styles.errorMessage}>{errors.phone}</p>}
+                </div>
+                <div className={styles.inputGroup}>
+                  <label className={styles.inputLabel}>DOB:</label>
+                  <input
+                    type="date"
+                    name="dob"
+                    value={formData.dob}
+                    onChange={handleChange}
+                    className={styles.inputField}
+                  />
+                  {errors.dob && <p className={styles.errorMessage}>{errors.dob}</p>}
+                </div>
+                <div className={styles.inputGroup}>
+                  <label className={styles.inputLabel}>Password:</label>
+                  <input
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className={styles.inputField}
+                  />
+                  {errors.password && <p className={styles.errorMessage}>{errors.password}</p>}
+                </div>
+              </div>
+              <div className={styles.buttonDiv}>
+                <button type="submit" className={styles.submitButton}>
+                  Register
+                </button>
+              </div>
+              {success && <p className={styles.successMessage}>{success}</p>}
+              {errors.general && <p className={styles.errorMessage}>{errors.general}</p>}
+            </form>
+
+          </div>
+
+          {/* Conditionally render the popup */}
+          {showPopup && (
+            <PopUpVerification
+              onClose={handleClosePopup}
+              onProceed={handleProceed}
+              verificationType={verificationType} // Dynamic verification type
+            />
+          )}
+        </div>
+      </div>
     </>
   );
 };

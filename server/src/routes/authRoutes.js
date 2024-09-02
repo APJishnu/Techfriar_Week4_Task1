@@ -9,7 +9,6 @@ const authApi = require("../helpers/authApi");
 
 
 
-
 // Route for user registration
 router.post('/register', async (req, res) => {
   const { name, email, phone, dob, password } = req.body; // Removed 'aadhar'
@@ -17,11 +16,10 @@ router.post('/register', async (req, res) => {
   try {
     await authHelper.SignUp({ name, email, phone, dob, password }, (error, userId) => {
       if (error) {
-        console.log(error);
+
         return res.status(201).json({ errors: error });
       }
-      console.log(userId);
-      
+
       res.status(201).json({
         message: 'User registered successfully',
         userId,
@@ -41,7 +39,6 @@ router.post('/send-otp', async (req, res) => {
   try {
     // Generate a new OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    console.log("Generated OTP:", otp);
 
     // Define expiry time for the OTP (1 minute from now)
     const expiryTime = Date.now() + 60 * 1000; // Current time + 60 seconds
@@ -53,7 +50,6 @@ router.post('/send-otp', async (req, res) => {
       otp,
       expiryTime
     };
-    console.log("OTP stored in session:", req.session.otp);
 
     const subject = 'Your OTP for Verification';
     const text = `Your OTP is ${otp}`;
@@ -68,7 +64,6 @@ router.post('/send-otp', async (req, res) => {
     // Respond with success
     res.status(200).json({ message: 'OTP sent successfully.' });
   } catch (err) {
-    console.error('Error sending OTP:', err);
     res.status(500).json({ message: 'Failed to send OTP. Please try again later.' });
   }
 });
@@ -81,7 +76,6 @@ router.post('/verify-otp', async (req, res) => {
   try {
     const sessionOtp = req.session.otp;
 
-    console.log("Session OTP:", sessionOtp);
 
     if (!sessionOtp) {
       return res.status(400).json({ message: 'No OTP found. Please request an OTP first.' });
@@ -106,12 +100,11 @@ router.post('/verify-otp', async (req, res) => {
       req.session.otp = null; // Optionally, clear OTP from session
       res.status(200).json({ verified: true });
     } else {
-      req.session.otp = null; 
+      req.session.otp = null;
       res.status(200).json({ message: 'Invalid OTP.' });
     }
   } catch (err) {
-    req.session.otp = null; 
-    console.error('Error verifying OTP:', err);
+    req.session.otp = null;
     res.status(500).json({ message: 'An error occurred during OTP verification.' });
   }
 });
@@ -122,7 +115,6 @@ router.post('/verify-otp', async (req, res) => {
 // Aadhaar Verification Route
 router.post('/verify-aadhar', async (req, res) => {
   const { aadharNumber, userId } = req.body;
-  console.log("userId",userId)
   try {
 
     const options = await authApi.aadhaarVerifyApi(aadharNumber);
@@ -146,7 +138,6 @@ router.post('/verify-aadhar', async (req, res) => {
 // PAN Verification Route
 router.post('/verify-pan', async (req, res) => {
   const { panNumber, userId } = req.body;
-  console.log(userId)
   try {
     const options = await authApi.panVerifyApi(panNumber);
 
@@ -160,7 +151,6 @@ router.post('/verify-pan', async (req, res) => {
       res.status(400).json({ verified: false });
     }
   } catch (err) {
-    console.error('pan verification error:', err.response ? err.response.data : err.message);
     res.status(500).json({ error: 'pan verification failed. Please try again later.' });
   }
 });
@@ -169,9 +159,9 @@ router.post('/verify-pan', async (req, res) => {
 
 router.post('/verify-bank', async (req, res) => {
   const { bankAccountNumber, ifscCode } = req.body;
-  
+
   try {
-    const options = await authApi.bankVerifyApiPost(bankAccountNumber,ifscCode );
+    const options = await authApi.bankVerifyApiPost(bankAccountNumber, ifscCode);
     const response = await axios.request(options);
     res.status(200).json({
       success: true,
@@ -180,7 +170,6 @@ router.post('/verify-bank', async (req, res) => {
       message: 'Bank verification initiated successfully.'
     });
   } catch (error) {
-    console.error('Error initiating bank verification:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to initiate bank verification.',
@@ -193,9 +182,7 @@ router.post('/verify-bank', async (req, res) => {
 
 // GET route to check verification status
 router.get('/check-bank-status', async (req, res) => {
-  const { requestId ,userId,bankAccountNumber} = req.query;
-  console.log(userId)
-  console.log(requestId)
+  const { requestId, userId, bankAccountNumber } = req.query;
 
   // Ensure requestId is provided
   if (!requestId) {
@@ -238,7 +225,6 @@ router.get('/check-bank-status', async (req, res) => {
       });
     }
   } catch (error) {
-    console.error('Error fetching bank verification status:', error.response ? error.response.data : error.message);
     res.status(500).json({
       success: false,
       message: 'Failed to retrieve bank verification status.',
@@ -251,18 +237,16 @@ router.get('/check-bank-status', async (req, res) => {
 // Assuming authApi.gstVerifyApi is a function that returns the required options for the API request
 router.post('/verify-gst', async (req, res) => {
   const { gstNumber, userId } = req.body;
-  console.log(req.body);
 
   try {
     const options = await authApi.gstVerifyApi(gstNumber);
     const gstResponse = await axios.request(options);
-    console.log(gstResponse.data);
 
     const gstin = gstResponse.data.result.source_output.gstin;
 
     if (gstin && gstin !== null) {
 
-      await authValidation.gstVerified(gstNumber, userId);      
+      await authValidation.gstVerified(gstNumber, userId);
       res.status(200).json({
         success: true,
         message: 'GST verified successfully.',
@@ -275,7 +259,6 @@ router.post('/verify-gst', async (req, res) => {
       });
     }
   } catch (error) {
-    console.error('Error verifying GST:', error);
     res.status(500).json({
       success: false,
       message: 'An error occurred while verifying GST.'
@@ -285,7 +268,7 @@ router.post('/verify-gst', async (req, res) => {
 
 
 router.post('/verify-pincode', async (req, res) => {
-  const { pincode ,userId} = req.body;
+  const { pincode } = req.body;
 
   if (!pincode) {
     return res.status(400).json({ message: "PIN code is required." });
@@ -295,7 +278,6 @@ router.post('/verify-pincode', async (req, res) => {
     const response = await axios.get(pinCodeApi);
     const data = response.data;
     const objectData = data[0];
-    console.log(objectData)
 
     if (objectData.Status === "Success" && objectData.PostOffice && objectData.PostOffice.length > 0) {
       const postOffice = objectData.PostOffice[0]; // Assuming you want the first post office record
@@ -326,7 +308,6 @@ router.post('/verify-pincode', async (req, res) => {
 // routes/user.js
 router.post('/add-address', async (req, res) => {
   const data = req.body; // Ensure body contains the data
-  console.log(data.country); // Debugging log to check if the country is being passed correctly
 
   try {
     // Validate input
@@ -343,7 +324,6 @@ router.post('/add-address', async (req, res) => {
 
     return res.status(200).json({ success: true, message: "User and address saved successfully" });
   } catch (error) {
-    console.error("Error saving user and address:", error);
     return res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
@@ -381,7 +361,6 @@ router.post('/login', async (req, res) => {
       user: req.session.user // Optionally return user info to the frontend
     });
   } catch (error) {
-    console.error('Error during login:', error);
     res.status(500).json({ errors: { general: 'An unexpected error occurred during login.' } });
   }
 });
