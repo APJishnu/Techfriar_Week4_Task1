@@ -5,42 +5,67 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import axios from 'axios';
 import useAuth from '../hooks/useAuth'; // Import the custom hook
-
+import { useState } from 'react';
 const Home: React.FC = () => {
   const { isLoggedIn, user, loading } = useAuth(); // Use the custom hook
+  const [photo, setPhoto] = useState(user?.photo || '');
 
-  const handleLogout =  () => {
-     axios.get('http://localhost:5000/api/auth/logout', { withCredentials: true });
+
+  const handleLogout = () => {
+    axios.get('http://localhost:5000/api/auth/logout', { withCredentials: true });
     window.location.reload(); // Refresh the page to update the UI
   };
 
   if (loading) {
-    return <div className={styles.loadingSpinner}></div>;
+
+    return <div className={styles.loadingSpinDiv}><div className={styles.loadingSpinner}></div></div>;
   }
+
+
+
+  const handleRemovePhoto = async () => {
+    try {
+      const response = await fetch('/remove-profilePhoto', {
+        method: 'POST',
+      });
+      if (response.ok) {
+        console.log('Profile photo removed successfully');
+        setPhoto('/illustations/userProfile.svg'); // Update the photo state to default
+      } else {
+        console.error('Error removing profile photo');
+      }
+    } catch (error) {
+      console.error('Error removing profile photo:', error);
+    }
+  };
 
   return (
     <div className={styles.wrapper}>
       {/* Hero Section */}
       <div className={styles.hero}>
-        <h1>Welcome to Our Website</h1>
-        <p>Your one-stop solution for all your needs!</p>
-        <div className={styles.heroButtons}>
-          {!isLoggedIn ? (
-            <>
-              <Link href='/register'>
-                <span className={styles.button}>Register</span>
-              </Link>
-              <Link href='/login'>
-                <span className={styles.button}>Login</span>
-              </Link>
-            </>
-          ) : (
-            <>
-              <button onClick={handleLogout} className={styles.button}>
-                Logout
-              </button>
-            </>
-          )}
+        <img className={styles.Image} src="/illustrations/HeroSection.svg"></img>
+        <div className={styles.HeroSectionContentDiv}>
+          <h1>Welcome to Our Website</h1>
+          {isLoggedIn? (<p>Your one-stop solution for all your needs!</p>):(<p>Please Login or register for Start with your Profile</p>)}
+          
+          <div className={styles.heroButtons}>
+            {!isLoggedIn ? (
+              <>
+                <Link href='/register'
+                  className={styles.button}>Register
+                </Link>
+                <Link href='/login'
+                  className={styles.button}>Login
+                </Link>
+              </>
+            ) : (
+              <>
+                <button onClick={handleLogout} className={styles.button}>
+                  Logout
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
 
@@ -48,71 +73,93 @@ const Home: React.FC = () => {
       {isLoggedIn && (
         <section className={styles.section}>
           <div className={styles.container}>
-            <h2 className={styles.title}>User Details</h2>
-            <p className={styles.description}>Please fill in the details below.</p>
-            <form className={styles.userForm}>
-              <div className={styles.inputGroup}>
-                <label htmlFor="name">Name:</label>
-                <input type="text" id="name" name="name" className={styles.inputField} defaultValue={user?.name || ''} />
+            <div className={styles.userCard}>
+              <div className={styles.userProfile}>
+                <div className={styles.profilePhoto}>
+                  <img
+                    src={photo ? `${photo}` : '/illustrations/userProfile.svg'}
+                    alt="Profile Photo"
+                    className={styles.profilePicture}
+                  />
+                </div>
+                <h6 className={styles.userName}>
+                  {user?.firstname} {user?.lastname}
+                </h6>
+                {photo && (
+                  <button onClick={handleRemovePhoto} className={styles.removePhotoBtn}>
+                    Remove Photo
+                  </button>
+                )}
               </div>
-              <div className={styles.inputGroup}>
-                <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" className={styles.inputField} defaultValue={user?.email || ''} />
+              <div className={styles.userDetails}>
+                <h6 className={styles.infoTitle}>User Details</h6>
+                <div className={styles.detailsGrid}>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>Name:</span>
+                    <span className={styles.detailValue}>{user?.name || 'N/A'}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>Email:</span>
+                    <span className={styles.detailValue}>{user?.email || 'N/A'}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>Phone:</span>
+                    <span className={styles.detailValue}>{user?.phone || 'N/A'}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>Date of Birth:</span>
+                    <span className={styles.detailValue}>{user?.dob || 'N/A'}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>Aadhaar Number:</span>
+                    <span className={styles.detailValue}>{user?.aadhaarNumber || 'N/A'}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>PAN Number:</span>
+                    <span className={styles.detailValue}>{user?.panNumber || 'N/A'}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>Bank Account Number:</span>
+                    <span className={styles.detailValue}>{user?.bankAccountNumber || 'N/A'}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>GST Number:</span>
+                    <span className={styles.detailValue}>{user?.gstNumber || 'N/A'}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>Pincode:</span>
+                    <span className={styles.detailValue}>{user?.addressPincode || 'N/A'}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>Place:</span>
+                    <span className={styles.detailValue}>{user?.addressPlace || 'N/A'}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>District:</span>
+                    <span className={styles.detailValue}>{user?.addressDistrict || 'N/A'}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>State:</span>
+                    <span className={styles.detailValue}>{user?.addressState || 'N/A'}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>Country:</span>
+                    <span className={styles.detailValue}>{user?.addressCountry || 'N/A'}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>Registration Completed At:</span>
+                    <span className={styles.detailValue}>{user?.registrationCompletedAt || 'N/A'}</span>
+                  </div>
+                </div>
+                <div className={styles.buttonDiv}>
+                  <a href="/edit-profile" className={styles.editButton}>Edit Profile</a>
+                </div>
+
               </div>
-              <div className={styles.inputGroup}>
-                <label htmlFor="phone">Phone:</label>
-                <input type="text" id="phone" name="phone" className={styles.inputField} defaultValue={user?.phone || ''} />
-              </div>
-              <div className={styles.inputGroup}>
-                <label htmlFor="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="dob" className={styles.inputField} />
-              </div>
-              <div className={styles.inputGroup}>
-                <label htmlFor="aadhaarNumber">Aadhaar Number:</label>
-                <input type="text" id="aadhaarNumber" name="aadhaarNumber" className={styles.inputField} />
-              </div>
-              <div className={styles.inputGroup}>
-                <label htmlFor="panNumber">PAN Number:</label>
-                <input type="text" id="panNumber" name="panNumber" className={styles.inputField} />
-              </div>
-              <div className={styles.inputGroup}>
-                <label htmlFor="bankAccountNumber">Bank Account Number:</label>
-                <input type="text" id="bankAccountNumber" name="bankAccountNumber" className={styles.inputField} />
-              </div>
-              <div className={styles.inputGroup}>
-                <label htmlFor="gstNumber">GST Number:</label>
-                <input type="text" id="gstNumber" name="gstNumber" className={styles.inputField} />
-              </div>
-              <div className={styles.inputGroup}>
-                <label htmlFor="addressPincode">Pincode:</label>
-                <input type="text" id="addressPincode" name="addressPincode" className={styles.inputField} />
-              </div>
-              <div className={styles.inputGroup}>
-                <label htmlFor="addressPlace">Place:</label>
-                <input type="text" id="addressPlace" name="addressPlace" className={styles.inputField} />
-              </div>
-              <div className={styles.inputGroup}>
-                <label htmlFor="addressDistrict">District:</label>
-                <input type="text" id="addressDistrict" name="addressDistrict" className={styles.inputField} />
-              </div>
-              <div className={styles.inputGroup}>
-                <label htmlFor="addressState">State:</label>
-                <input type="text" id="addressState" name="addressState" className={styles.inputField} />
-              </div>
-              <div className={styles.inputGroup}>
-                <label htmlFor="addressCountry">Country:</label>
-                <input type="text" id="addressCountry" name="addressCountry" className={styles.inputField} />
-              </div>
-              <div className={styles.inputGroup}>
-                <label htmlFor="registrationCompletedAt">Registration Completed At:</label>
-                <input type="date" id="registrationCompletedAt" name="registrationCompletedAt" className={styles.inputField} />
-              </div>
-              <div className={styles.buttonDiv}>
-              <button type="submit" className={styles.kycButton}>Submit</button>
-              </div>
-            </form>
+            </div>
           </div>
         </section>
+
       )}
     </div>
   );

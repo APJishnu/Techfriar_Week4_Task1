@@ -223,3 +223,53 @@
   opacity: 1;
 }
 
+/* Add responsive design for mobile screens */
+@media screen and (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    padding: 20px; /* Add padding for mobile */
+    padding-top: 100px;
+  }
+
+  .Image {
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Adjust height automatically */
+    margin-bottom: 20px; /* Add space between the image and OTP container */
+   
+  }
+
+  .container {
+    width: 100%; /* Ensure container takes full width on mobile */
+    max-width: 100%; /* Remove the max-width limit on smaller screens */
+    padding: 15px; /* Adjust padding for mobile */
+    padding-bottom: 50px;
+  }
+
+  .title {
+    font-size: 20px; /* Adjust font size for mobile */
+    margin-bottom: 15px; /* Adjust margin */
+  }
+
+  .inputField {
+    padding: 8px; /* Adjust input padding for mobile */
+    font-size: 12px; /* Adjust font size */
+  }
+
+  .verifyButton,
+  .sendButton {
+    width: 100%; /* Make buttons full width on mobile */
+    padding: 12px; /* Adjust padding for mobile */
+    font-size: 14px; /* Adjust font size */
+  }
+
+  .otpInput {
+    width: 35px; /* Slightly smaller OTP input */
+    height: 35px;
+    margin: 0 4px; /* Adjust margin for better spacing */
+  }
+
+  .tooltip {
+    top: 35px; /* Adjust tooltip positioning for smaller screens */
+  }
+}
+

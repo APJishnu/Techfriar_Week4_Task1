@@ -176,14 +176,14 @@ const AddressLookup: React.FC = () => {
             </div>
             {/* Toast Container */}
             <ToastContainer
-                className="custom-toast-container"
+                className={styles.customToastContainer}
                 autoClose={5000}
                 pauseOnHover
                 draggable
                 style={{
                     position: 'absolute',  // Use absolute positioning
                     top: '87%',           // Adjust the top position
-                    left: '40%',
+                    left: '35%',
                     margin: '0',           // Adjust the margin as needed
                   }} // Inline style for margin
             />

@@ -168,18 +168,49 @@
   }
   
   /* Mobile Display Adjustments */
-  @media (max-width: 480px) {
-    .container {
-      max-width: 90%;
-      padding: 15px;
-    }
-  
-    .inputField {
-      font-size: 12px;
-    }
-  
-    .title {
-      font-size: 1.5em;
-    }
+  /* Responsive adjustments for screens with max-width of 768px */
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 20px; /* Add padding for better spacing on smaller screens */
+    flex-direction: column; /* Stack elements vertically */
+    padding-top: 100px;
+    overflow-x: hidden;
   }
+
+  .container {
+    max-width: 100%; /* Make the container take full width */
+    padding: 15px;
+  }
+
+  .Image {
+    width: 100%; /* Make image fully responsive */
+    max-width: 300px; /* Optional: limit the image width */
+    margin-bottom: 15px; /* Add space below the image */
+  }
+
+  .title {
+    font-size: 1.6em; /* Adjust the font size for smaller screens */
+  }
+
+  .description {
+    font-size: 1em; /* Slightly reduce the description font size */
+  }
+
+  .inputField,
+  .pinInputField {
+    font-size: 14px; /* Adjust input font size for readability */
+  }
+
+  .kycButton {
+    font-size: 15px; /* Adjust button text size */
+    padding: 12px; /* Increase padding for better touch targets */
+  }
+
+
+  .customToastContainer{
+    
+    margin-right: 40px;
+  }
+}
+
   

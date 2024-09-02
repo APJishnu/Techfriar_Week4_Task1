@@ -204,23 +204,73 @@
   opacity: 1;
 }
 
-/* Mobile Display Adjustments */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  .Image {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 20px;
+  }
+
   .container {
     max-width: 90%;
-    padding: 15px;
-  }
-
-  .inputField {
-    font-size: 14px;
-  }
-
-  .verifyButton {
-    padding: 8px 12px;
-    font-size: 12px;
+    padding: 20px;
+    animation: none; /* Remove animation for mobile responsiveness */
   }
 
   .title {
     font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+
+  .inputField {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  /* Ensuring consistent width for both "Verify" buttons */
+  .verifyButton,  
+  .gstVerifyButton {
+    padding: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     /* Set width to 100% to ensure both buttons have the same width */
+  }
+  .submitButton{
+    width: 100%;
+  }
+
+  .inputWithButton {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .otpInput {
+    width: 35px;
+    height: 35px;
+    margin: 0 3px;
+  }
+
+  .successMessage, 
+  .errorMessage {
+    font-size: 12px;
+  }
+
+  /* Remove the margin-top from the second verify button */
+  .gstVerifyButton {
+    padding: 10px;
+    font-size: 14px;
+    width: 10%;
   }
 }
+
+
