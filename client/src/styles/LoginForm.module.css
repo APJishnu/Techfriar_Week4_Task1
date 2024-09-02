@@ -38,7 +38,7 @@
 }
 
 .Image {
-  width: 600px;
+  width: 50%;
   height: 600px;
   animation: slideYright 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
@@ -144,5 +144,10 @@
 
   .container {
     max-width: 90%;
+    margin-bottom: 50px;
+
+  }
+  .Image{
+    width: 80%;
   }
 }

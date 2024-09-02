@@ -5,10 +5,31 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import axios from 'axios';
 import useAuth from '../hooks/useAuth'; // Import the custom hook
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 const Home: React.FC = () => {
   const { isLoggedIn, user, loading } = useAuth(); // Use the custom hook
-  const [photo, setPhoto] = useState(user?.photo || '');
+  const [photo, setPhoto] = useState('');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  useEffect(() => {
+    const fetchProfilePhoto = async () => {
+      if (isLoggedIn && user) {
+        try {
+          const response = await axios.get(`http://localhost:5000/api/user/get-profile-photo/${user.id}`);
+          if (response.data.success) {
+            setPhoto(response.data.photo || '');
+          } else {
+            setPhoto('');
+          }
+        } catch (error) {
+          console.error('Error fetching profile photo:', error);
+          setPhoto('');
+        }
+      }
+    };
+
+    fetchProfilePhoto();
+  }, [isLoggedIn, user]);
+
 
 
   const handleLogout = () => {
@@ -21,16 +42,24 @@ const Home: React.FC = () => {
     return <div className={styles.loadingSpinDiv}><div className={styles.loadingSpinner}></div></div>;
   }
 
-
+  
 
   const handleRemovePhoto = async () => {
+    if (!user) return;
+  
     try {
-      const response = await fetch('/remove-profilePhoto', {
-        method: 'POST',
-      });
-      if (response.ok) {
-        console.log('Profile photo removed successfully');
-        setPhoto('/illustations/userProfile.svg'); // Update the photo state to default
+      const response = await axios.post(
+        'http://localhost:5000/api/user/remove-profilePhoto',
+        { userId: user.id },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+  
+      if (response.data.success) {
+        setPhoto("");
       } else {
         console.error('Error removing profile photo');
       }
@@ -38,6 +67,49 @@ const Home: React.FC = () => {
       console.error('Error removing profile photo:', error);
     }
   };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setSelectedFile(event.target.files[0]);
+    }
+  };
+
+  const handleUploadPhoto = async () => {
+    if (!selectedFile) return;
+
+    const formData = new FormData();
+    formData.append('profilePhoto', selectedFile);
+    const userId = user.id;
+    formData.append('userId', userId);
+
+
+    try {
+
+      const response = await axios.post('http://localhost:5000/api/user/upload-profile-photo', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+
+        },
+
+
+
+      });
+
+      if (response.data.success) {
+        console.log(response.data.photo)
+        setPhoto(response.data.photo);
+        console.log(photo)
+      } else {
+        console.error('Error uploading photo');
+      }
+    } catch (error) {
+      console.error('Error uploading photo:', error);
+    }
+
+
+
+  };
+
 
   return (
     <div className={styles.wrapper}>
@@ -77,18 +149,35 @@ const Home: React.FC = () => {
               <div className={styles.userProfile}>
                 <div className={styles.profilePhoto}>
                   <img
-                    src={photo ? `${photo}` : '/illustrations/userProfile.svg'}
+                    src={photo ? `http://localhost:5000${photo}` : '/illustrations/userProfile.svg'}
                     alt="Profile Photo"
                     className={styles.profilePicture}
                   />
+
                 </div>
                 <h6 className={styles.userName}>
                   {user?.firstname} {user?.lastname}
                 </h6>
-                {photo && (
+
+                {photo ? (
                   <button onClick={handleRemovePhoto} className={styles.removePhotoBtn}>
                     Remove Photo
                   </button>
+                ) : (
+                  <>
+                  <label htmlFor="fileInput" className={photo ? styles.uploadLabel : ''}>
+                {photo ? 'Change Photo' : 'Choose Photo'}
+              </label>
+              <input
+                id="fileInput"
+                type="file"
+                className={styles.photoInput}
+                onChange={handleFileChange}
+              />
+                    <button onClick={handleUploadPhoto} className={styles.uploadPhotoBtn}>
+                      Upload Photo
+                    </button>
+                  </>
                 )}
               </div>
               <div className={styles.userDetails}>
@@ -145,10 +234,6 @@ const Home: React.FC = () => {
                   <div className={styles.detailItem}>
                     <span className={styles.detailLabel}>Country:</span>
                     <span className={styles.detailValue}>{user?.addressCountry || 'N/A'}</span>
-                  </div>
-                  <div className={styles.detailItem}>
-                    <span className={styles.detailLabel}>Registration Completed At:</span>
-                    <span className={styles.detailValue}>{user?.registrationCompletedAt || 'N/A'}</span>
                   </div>
                 </div>
                 <div className={styles.buttonDiv}>

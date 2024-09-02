@@ -9,6 +9,8 @@
 }
 
 
+
+
 /* Keyframes for slide animation */
 @keyframes slideYright {
   from {
@@ -34,6 +36,103 @@
 
 
 
+
+/* Photo Upload Section */
+.photoUploadContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.uploadPhotoBtn {
+  background-color: #235ba0;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+}
+
+.uploadPhotoBtn:hover {
+  background-color: #1d2a5c;
+}
+.photoInput {
+  display: none;
+}
+
+/* Custom styling for file input label */
+.uploadLabel {
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+  height: auto;
+  padding: 10px 20px;
+  background-color: #074990;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.uploadLabel:hover {
+  cursor: pointer;
+  background-color: #0056b3;
+}
+
+/* Wrapper around file input for better control */
+.fileInputWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+
+.photoInput:hover {
+  border-color: #235ba0;
+}
+
+.photoInput:focus {
+  outline: none;
+  border-color: #1d2a5c;
+}
+
+/* Adding animation to the button when clicked */
+.uploadPhotoBtn:active,
+.removePhotoBtn:active {
+  transform: scale(0.98);
+ 
+}
+
+.removePhotoBtn {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+}
+
+.removePhotoBtn:hover {
+  background-color: #e60000;
+  
+}
+
+
 .container {
   max-width: 100%;
   padding: 105px;
@@ -43,6 +142,7 @@
 /* User Card */
 .userCard {
   display: flex;
+  
   background: linear-gradient(to right, #e0eef0, #e6eeff);
   border-radius: 20px;
   overflow: hidden;
@@ -61,18 +161,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .profilePhoto {
-  margin-bottom: 25px;
-  padding: 0px;
+  margin-top: 20px;
+  padding: 30px;
+  
 }
 
 .profilePicture {
   border-radius: 5px;
-  width: 450px;
+  width: 400px;
   /* Adjusted size */
-  height: 450px;
+  height: 400px;
   /* Adjusted size */
 }
 
@@ -376,3 +478,5 @@
     font-size: 1.5em;
   }
 }
+
+

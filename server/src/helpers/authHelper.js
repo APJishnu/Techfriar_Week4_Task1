@@ -79,9 +79,9 @@ module.exports = {
       }
 
       // Check if registration is completed
-      if (!user.registrationCompletedAt) {
-        return { error: { general: 'User registration not completed.' } };
-      }
+      // if (!user.registrationCompletedAt) {
+      //   return { error: { general: 'User registration not completed.' } };
+      // }
 
       // Check if the password matches
       const isMatch = await bcrypt.compare(password, user.password);

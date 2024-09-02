@@ -14,20 +14,18 @@ const sendEmail = async (recipientEmail, subject, text, html) => {
 
     // Email details
     const mailOptions = {
-      from: process.env.EMAIL_USER, // Sender address
-      to: recipientEmail, // Receiver's email
-      subject: subject, // Email subject
-      text: text, // Plain text body
-      html: html, // HTML body (optional)
+      from: process.env.EMAIL_USER, 
+      to: recipientEmail, 
+      subject: subject, 
+      text: text, 
+      html: html, 
     };
 
     // Send email 
     await transporter.sendMail(mailOptions);
 
-    console.log(`Email sent to ${recipientEmail}`);
     return true;
   } catch (error) {
-    console.error("Error sending email:", error);
     return false;
   }
 };

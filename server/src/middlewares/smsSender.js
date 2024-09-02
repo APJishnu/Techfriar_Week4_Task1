@@ -24,10 +24,8 @@ const sendSms = async (to, otp) => {
       to: formattedNumber,
     });
 
-    console.log(`SMS sent to ${formattedNumber}`);
     return true;
   } catch (error) {
-    console.error("Error sending SMS:", error);
     return false;
   }
 };

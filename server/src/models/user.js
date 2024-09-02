@@ -24,7 +24,8 @@ const userSchema = new mongoose.Schema({
         country: { type: String, default:null  },
         createdAt: { type: Date, default: null },    
     },
-    regitrationCompletedAt:{ type: Date, default: null },
+    registrationCompletedAt:{ type: Date, default: null },
+    photo:{type: String, default:null } ,
     
 });
 

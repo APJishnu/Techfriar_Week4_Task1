@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const { db } = require('./config/database')
@@ -32,8 +33,13 @@ app.use(session({
   })
 }));
 
+
+app.use('/uploads', express.static('uploads'));
+
+
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
 
 
 

@@ -93,6 +93,7 @@ const FinancialVerification: React.FC = () => {
 
             if (getResponse.data.success) {
               setBankVerified(true);
+              console.log(getResponse.data.success)
               setBankSuccess("Bank details verified successfully.");
             } else {
               setBankError(getResponse.data.message || "Bank verification failed.");
@@ -140,7 +141,7 @@ const FinancialVerification: React.FC = () => {
   };
 
   const proceedToNextStep = () => {
-    router.push(`register/address-lookup?userId=${userId}`); // Navigate to the address lookup page
+    router.push(`/register/address-lookup?userId=${userId}`); // Navigate to the address lookup page
   };
 
   return (

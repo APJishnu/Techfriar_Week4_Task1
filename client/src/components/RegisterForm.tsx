@@ -49,6 +49,9 @@ const RegisterForm: React.FC = () => {
       setTouchedFields({ ...touchedFields, [name]: true });
     }
 
+
+
+
     // Validate the field irgb(17, 25, 135)
     let errorMessage = "";
     switch (name) {

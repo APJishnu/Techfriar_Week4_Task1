@@ -1,8 +1,4 @@
-const { validateRequest } = require('twilio/lib/webhooks/webhooks');
 const User = require('../models/user');
-const { default: mongoose } = require('mongoose');
-const ObjectId = mongoose.Types.ObjectId;
-
 
 module.exports = {
   emailVerified: async (email, verifiedDate) => {
@@ -183,11 +179,11 @@ module.exports = {
       const updatedPinCodeAt = await User.findOneAndUpdate(
         { _id: data.userId }, // Make sure this field matches the one in the user schema
         { $set: updatedData },
-        { new: true } // Return the updated document
+        { new: true }
       );
 
       if (!updatedPinCodeAt) {
-        return false; // If no user found, return false
+        return false;
       }
       return true; // Successfully updated
     } catch (error) {

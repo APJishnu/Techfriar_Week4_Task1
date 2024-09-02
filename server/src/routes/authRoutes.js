@@ -350,7 +350,19 @@ router.post('/login', async (req, res) => {
       id: user._id,
       name: user.name,
       email: user.email,
-      phone: user.phone
+      phone: user.phone,
+      dob:user.dob,
+      aadhaarNumber:user.aadhaarNumber,
+      panNumber:user.panNumber,
+      bankAccountNumber:user.bankAccountNumber,
+      gstNumber:user.gstNumber,
+      addressPincode:user.address.pincode,
+      addressPlace:user.address.place,
+      addressDistrict:user.address.district,
+      addressState:user.address.state,
+      addressCountry:user.address.country
+      
+
     };
 
     req.session.loggedIn = true
